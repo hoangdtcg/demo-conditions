@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<style>
+    td{
+        width: 60px;
+        height: 40px;
+        text-align: center;
+    }
+    td#screen {
+        text-align: right;
+        font-size: 25px;
+        padding-right: 5px;
+    }
+    table#calculator {
+        width: 240px;
+    }
+</style>
+<body>
+<!--B1: Vẽ giao diện-->
+<table id="calculator" border="1px" style="display: block">
+    <tr>
+        <td id="screen" colspan="4"></td>
+    </tr>
+    <tr>
+        <td onclick="clickCell('(')">(</td>
+        <td onclick="clickCell(')')">)</td>
+        <td onclick="del()">Del</td>
+        <td onclick="resetScreen()">AC</td>
+    </tr>
+    <tr>
+        <td onclick="clickCell(7)">7</td>
+        <td onclick="clickCell(8)">8</td>
+        <td onclick="clickCell(9)">9</td>
+        <td onclick="clickCell('/')">/</td>
+    </tr>
+    <tr>
+        <td onclick="clickCell(4)">4</td>
+        <td onclick="clickCell(5)">5</td>
+        <td onclick="clickCell(6)">6</td>
+        <td onclick="clickCell('*')">X</td>
+    </tr>
+    <tr>
+        <td onclick="clickCell(1)">1</td>
+        <td onclick="clickCell(2)">2</td>
+        <td onclick="clickCell(3)">3</td>
+        <td onclick="clickCell('-')">-</td>
+    </tr>
+    <tr>
+        <td onclick="clickCell(0)">0</td>
+        <td onclick="clickCell('.')">.</td>
+        <td onclick="cal()">=</td>
+        <td onclick="clickCell('+')">+</td>
+    </tr>
+</table>
+<button onclick="power()">Power</button>
+<script>
+    let screen = document.getElementById('screen');
+
+    //B2: Click số
+    function clickCell(number) {
+        if(screen.innerHTML == '0'){
+            screen.innerHTML = number;
+        }else {
+            screen.innerHTML += number;
+        }
+
+        // screen.innerHTML = screen.innerHTML + number;
+    }
+
+    //B3: Tính toán
+    function cal() {
+        let listValue = screen.innerHTML;
+        let result = eval(listValue);
+    //    B4 - Hiển thị kết quả
+
+        if(Number.isInteger(result) == false){
+            result = result.toFixed(2);
+        }
+        if(result == 'Infinity'){
+            result = 'Syntax Error';
+        }
+        screen.innerHTML = result;
+    }
+
+    function resetScreen() {
+        screen.innerHTML = "0";
+    }
+
+    function del() {
+        let res = screen.innerHTML.substring(0,screen.innerHTML.length-1);
+        if(res == ''){
+            res = '0';
+        }
+        screen.innerHTML = res;
+    }
+
+    function power() {
+        let cal = document.getElementById('calculator');
+        if(cal.style.display == 'none'){
+            cal.style.display = 'block';
+        }else {
+            cal.style.display = 'none';
+        }
+
+    }
+</script>
+</body>
+</html>

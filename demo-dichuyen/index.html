@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đào di chuyển</title>
+</head>
+<style>
+    img{
+        width: 100px;
+        position: absolute;
+        /*border-radius: 50%;*/
+    }
+</style>
+<body>
+<!--<img src="flag.jpg" alt="">-->
+<img onclick="yeah()" id="dao" src="dao-tien.png" alt="" style="left: 0px; top: 50px">
+<br>
+<!--<button onclick="move()">Move</button>-->
+<script>
+function move() {
+    let dao = document.getElementById('dao');
+    let left = parseInt(dao.style.left);
+    let randomLeft = Math.floor(Math.random()*window.innerWidth);
+    let randomTop = Math.floor(Math.random()*window.innerHeight);
+    dao.style.left = randomLeft + 'px';
+    dao.style.top = randomTop + 'px';
+}
+function yeah(){
+    alert("Bat duoc roi!");
+}
+setInterval(move,1500);
+
+</script>
+</body>
+</html>
